@@ -69,5 +69,69 @@ namespace Keeper.Data.Data
             }
             return user;
         }
+
+        public List<Contact> GetContacts(int userId)
+        {
+            List<Contact> contacts = new List<Contact>();
+
+            List<DbParameter> parameterList = new List<DbParameter>();
+            parameterList.Add(new SqlParameter("@UserId", SqlDbType.Int) { Value = userId });
+
+            using (DbDataReader dataReader = base.GetDataReader("sp_GetContactsByUserId", parameterList))
+            {
+                if (dataReader != null && dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        contacts.Add(new Contact
+                        {
+                            Id = dataReader.GetGuid(dataReader.GetOrdinal("Id")),
+                            Name = dataReader.GetString(dataReader.GetOrdinal("Name")),
+                            Email = dataReader.GetString(dataReader.GetOrdinal("Email")),
+                            Phone = dataReader.GetString(dataReader.GetOrdinal("Phone")),
+                            ContactType = (ContactType)Enum.Parse(typeof(ContactType), dataReader.GetString(dataReader.GetOrdinal("ContactType"))),
+                            Owner = dataReader.GetInt32(dataReader.GetOrdinal("Owner")),
+                            OwnerName = dataReader.GetString(dataReader.GetOrdinal("OwnerName")),
+                            OwnerEmail = dataReader.GetString(dataReader.GetOrdinal("OwnerEmail")),
+                            Created = dataReader.IsDBNull(dataReader.GetOrdinal("Created")) ? new DateTime() : dataReader.GetDateTime(dataReader.GetOrdinal("Created")),
+                        });
+                    }
+                }
+            }
+            return contacts;
+        }
+
+        public Contact InsertNewContact(Contact model)
+        {
+            Contact contact = new Contact();
+
+            List<DbParameter> parameterList = new List<DbParameter>();
+            parameterList.Add(new SqlParameter("@Name", SqlDbType.NVarChar) { Value = model.Name });
+            parameterList.Add(new SqlParameter("@Email", SqlDbType.NVarChar) { Value = model.Email });
+            parameterList.Add(new SqlParameter("@Phone", SqlDbType.NVarChar) { Value = model.Phone });
+            parameterList.Add(new SqlParameter("@ContactType", SqlDbType.NVarChar) { Value = model.ContactType.ToString() });
+            parameterList.Add(new SqlParameter("@Owner", SqlDbType.Int) { Value = model.Owner });
+
+            using (DbDataReader dataReader = base.GetDataReader("sp_InsertNewContact", parameterList))
+            {
+                if (dataReader != null && dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        contact = new Contact
+                        {
+                            Id = dataReader.GetGuid(dataReader.GetOrdinal("Id")),
+                            Name = dataReader.GetString(dataReader.GetOrdinal("Name")),
+                            Email = dataReader.GetString(dataReader.GetOrdinal("Email")),
+                            Phone = dataReader.GetString(dataReader.GetOrdinal("Phone")),
+                            ContactType = (ContactType)Enum.Parse(typeof(ContactType), dataReader.GetString(dataReader.GetOrdinal("ContactType"))),
+                            Owner = dataReader.GetInt32(dataReader.GetOrdinal("Owner")),
+                            Created = dataReader.IsDBNull(dataReader.GetOrdinal("Created")) ? new DateTime() : dataReader.GetDateTime(dataReader.GetOrdinal("Created")),
+                        };
+                    }
+                }
+            }
+            return contact;
+        }
     }
 }

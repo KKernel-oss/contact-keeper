@@ -17,7 +17,7 @@ namespace contact_keeper_api.Controllers
     [ApiController]
     public class KeeperController : ControllerBase
     {
-        #region Users
+        #region Users & Authentication
 
         /// <summary>
         /// Registers a user
@@ -81,7 +81,7 @@ namespace contact_keeper_api.Controllers
         }
 
         /// <summary>
-        /// 
+        /// View the current list of users stored in the database (using MS SQL SERVER localhost)
         /// </summary>
         /// <returns></returns>
         /// 
@@ -161,7 +161,7 @@ namespace contact_keeper_api.Controllers
         }
 
         /// <summary>
-        /// Get a existing user
+        /// Get an existing user
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
@@ -190,5 +190,96 @@ namespace contact_keeper_api.Controllers
         }
         #endregion
 
+        #region Contacts
+
+
+        /// <summary>
+        /// Returns list of contacts for a specific users
+        /// </summary>
+        /// <returns></returns>
+        [JWT.Authorize]
+        [HttpGet]
+        [Route("contacts")]
+        public IActionResult GetContacts()
+        {
+            try
+            {
+                var tsql = new Query();
+                var jwt = new JwtMiddleware();
+                var token = Request.Headers["x-auth-token"].FirstOrDefault()?.Split(" ").Last();
+
+                var user = jwt.GetClaimValue(token);
+
+                var result = tsql.GetContacts(user);
+                return Ok(result);
+            }
+            catch (NullReferenceException ex)
+            {
+                return BadRequest(new Error
+                {
+                    Message = ex.Message,
+                    Status = false
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    new Error
+                    {
+                        Message = ex.Message,
+                        Status = false
+                    });
+            }
+        }
+
+        [JWT.Authorize]
+        [HttpPost]
+        [Route("contacts")]
+        public IActionResult AddNewContact([FromBody] Contact model)
+        {
+            try
+            {
+                var tsql = new Query();
+                var tokenHandler = new TokenHandler();
+
+                #region validation
+                if (string.IsNullOrWhiteSpace(model.Name))
+                    throw new NullReferenceException("Name is required");
+
+                if (!string.IsNullOrWhiteSpace(model.Email)) {
+                    if (!Regex.IsMatch(model.Email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
+                        throw new NullReferenceException("A valid email is required");
+                }
+
+                var jwt = new JwtMiddleware();
+                var token = Request.Headers["x-auth-token"].FirstOrDefault()?.Split(" ").Last();
+
+                var user = jwt.GetClaimValue(token);
+                model.Owner = user;
+
+                #endregion validation
+
+                var result = tsql.InsertNewContact(model);
+                return Ok(result);
+            }
+            catch (NullReferenceException ex)
+            {
+                return BadRequest(new Error
+                {
+                    Message = ex.Message,
+                    Status = false
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    new Error
+                    {
+                        Message = ex.Message,
+                        Status = false
+                    });
+            }
+        }
+        #endregion
     }
 }

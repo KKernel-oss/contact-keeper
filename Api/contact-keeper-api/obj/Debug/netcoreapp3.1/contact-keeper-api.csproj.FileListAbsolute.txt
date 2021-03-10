@@ -52,3 +52,6 @@ C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\contact-keeper-api
 C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\contact-keeper-api\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\contact-keeper-api\obj\Debug\netcoreapp3.1\contact-keeper-api.csproj.CoreCompileInputs.cache
 C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\contact-keeper-api\obj\Debug\netcoreapp3.1\contact-keeper-api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\contact-keeper-api\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\contact-keeper-api\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\contact-keeper-api\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll

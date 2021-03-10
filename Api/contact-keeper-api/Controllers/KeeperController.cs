@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using contact_keeper_api.JWT;
+using System.Security.Claims;
 
 namespace contact_keeper_api.Controllers
 {
@@ -112,12 +113,50 @@ namespace contact_keeper_api.Controllers
         {
             try
             {
-                var resp = new TokenResponse() { token = "1234567890" };
+                var tsql = new Query();
+                var tokenHandler = new TokenHandler();
+
+                #region validation
+
+                if (string.IsNullOrWhiteSpace(model.email))
+                    throw new NullReferenceException("Email is required");
+
+                if (string.IsNullOrWhiteSpace(model.password))
+                    throw new NullReferenceException("Password is required");
+
+                if (!string.IsNullOrWhiteSpace(model.password) && model.password.Length < 6)
+                    throw new NullReferenceException("Please enter a password with 6 or more characters");
+
+                if (!Regex.IsMatch(model.email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
+                    throw new NullReferenceException("A valid email is required");
+                #endregion
+
+                var user = tsql.GetUsers()
+                    .FirstOrDefault(a => a.email.ToLower().Trim() == model.email.ToLower().Trim()
+                    && a.password == model.password);
+
+                if (user is null)
+                    throw new NullReferenceException("Incorect email/password");
+
+                var resp = new TokenResponse() { token = tokenHandler.generateJwtToken(user) };
                 return Ok(resp);
+            }
+            catch (NullReferenceException ex)
+            {
+                return BadRequest(new Error
+                {
+                    Message = ex.Message,
+                    Status = false
+                });
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    new Error
+                    {
+                        Message = ex.Message,
+                        Status = false
+                    });
             }
         }
 
@@ -130,11 +169,18 @@ namespace contact_keeper_api.Controllers
         [JWT.Authorize]
         [HttpGet]
         [Route("auth")]
-        public IActionResult FindUser([FromBody] LoginDto model)
+        public IActionResult FindUser()
         {
             try
             {
-                var resp = new TokenResponse() { token = "3456" };
+                var tsql = new Query();
+                var jwt = new JwtMiddleware();
+                var token = Request.Headers["x-auth-token"].FirstOrDefault()?.Split(" ").Last();
+
+                var Id = jwt.GetClaimValue(token);
+
+                var resp = tsql.GetUsers().FirstOrDefault(a => a.Id == Id);
+
                 return Ok(resp);
             }
             catch (Exception ex)

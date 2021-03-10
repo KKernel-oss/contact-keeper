@@ -21,12 +21,15 @@ namespace contact_keeper_api.JWT
             _next = next;
             _appSettings = appSettings.Value;
         }
-
+        public JwtMiddleware()
+        {
+            _appSettings = new AppSettings { Secret = "THIS IS USED TO SIGN AND VERIFY JWT TOKENS, REPLACE IT WITH YOUR OWN SECRET, IT CAN BE ANY STRING" };
+        }
         public async Task Invoke(HttpContext context)
         {
-            var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+            var token = context.Request.Headers["x-auth-token"].FirstOrDefault()?.Split(" ").Last();
 
-            if (token != null)
+            if (!string.IsNullOrWhiteSpace(token))
                 attachUserToContext(context, token);
 
             await _next(context);
@@ -62,6 +65,25 @@ namespace contact_keeper_api.JWT
                 // do nothing if jwt validation fails
                 // user is not attached to context so request won't have access to secure routes
             }
+        }
+
+        public int GetClaimValue(string token)
+        {
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+            tokenHandler.ValidateToken(token, new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ClockSkew = TimeSpan.Zero
+            }, out SecurityToken validatedToken);
+
+            var jwtToken = (JwtSecurityToken)validatedToken;
+            var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "Id").Value);
+            return userId;
         }
     }
 }

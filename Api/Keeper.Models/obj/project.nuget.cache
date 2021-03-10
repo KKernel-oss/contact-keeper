@@ -1,10 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "lh8vWLZQpg0flznB9YZZs65iMxAH+xPWEzJPJsYfX++x7pss5iV4d2D5Fe8sGt9DyEjLymPQqrCDQec5EfSPag==",
+  "dgSpecHash": "XhyGwSzTGWcl9KVPc8MGJl/m36fXg8AUWBiR+2FhRx/gFMjAa2LM38fPotwBX/dAL/2eLSGnl6k8gUxf3m3drg==",
   "success": true,
   "projectFilePath": "C:\\Users\\kwalters\\Documents\\Personal\\React\\contact-keeper\\Api\\Keeper.Models\\Keeper.Models.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\kwalters\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+    "C:\\Users\\kwalters\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.13\\microsoft.aspnetcore.jsonpatch.3.1.13.nupkg.sha512",
+    "C:\\Users\\kwalters\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.1.13\\microsoft.aspnetcore.mvc.newtonsoftjson.3.1.13.nupkg.sha512",
+    "C:\\Users\\kwalters\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\kwalters\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\kwalters\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512"
   ],
   "logs": []
 }

@@ -1,0 +1,9 @@
+C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\Keeper.Helper\bin\Debug\netcoreapp3.1\Keeper.Helper.deps.json
+C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\Keeper.Helper\bin\Debug\netcoreapp3.1\Keeper.Helper.dll
+C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\Keeper.Helper\bin\Debug\netcoreapp3.1\Keeper.Helper.pdb
+C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\Keeper.Helper\obj\Debug\netcoreapp3.1\Keeper.Helper.csprojAssemblyReference.cache
+C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\Keeper.Helper\obj\Debug\netcoreapp3.1\Keeper.Helper.AssemblyInfoInputs.cache
+C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\Keeper.Helper\obj\Debug\netcoreapp3.1\Keeper.Helper.AssemblyInfo.cs
+C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\Keeper.Helper\obj\Debug\netcoreapp3.1\Keeper.Helper.csproj.CoreCompileInputs.cache
+C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\Keeper.Helper\obj\Debug\netcoreapp3.1\Keeper.Helper.dll
+C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\Keeper.Helper\obj\Debug\netcoreapp3.1\Keeper.Helper.pdb

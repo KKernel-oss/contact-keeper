@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "contact-keeper-api", "conta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keeper.Models", "..\Keeper.Models\Keeper.Models.csproj", "{4E04C655-18AC-412C-8338-DA23AAFDB3B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keeper.Data", "..\Keeper.Data\Keeper.Data.csproj", "{78E5C375-D46C-48CF-8637-6A4F35E9D5BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keeper.Helper", "..\Keeper.Helper\Keeper.Helper.csproj", "{F79B7283-EF4C-4C8E-9A2C-36E76E0651C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{4E04C655-18AC-412C-8338-DA23AAFDB3B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E04C655-18AC-412C-8338-DA23AAFDB3B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E04C655-18AC-412C-8338-DA23AAFDB3B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78E5C375-D46C-48CF-8637-6A4F35E9D5BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78E5C375-D46C-48CF-8637-6A4F35E9D5BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78E5C375-D46C-48CF-8637-6A4F35E9D5BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78E5C375-D46C-48CF-8637-6A4F35E9D5BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F79B7283-EF4C-4C8E-9A2C-36E76E0651C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F79B7283-EF4C-4C8E-9A2C-36E76E0651C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F79B7283-EF4C-4C8E-9A2C-36E76E0651C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F79B7283-EF4C-4C8E-9A2C-36E76E0651C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

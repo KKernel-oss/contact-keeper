@@ -1,0 +1,14 @@
+C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\Keeper.Data\bin\Debug\netcoreapp3.1\Keeper.Data.deps.json
+C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\Keeper.Data\bin\Debug\netcoreapp3.1\Keeper.Data.dll
+C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\Keeper.Data\obj\Debug\netcoreapp3.1\Keeper.Data.csprojAssemblyReference.cache
+C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\Keeper.Data\obj\Debug\netcoreapp3.1\Keeper.Data.AssemblyInfoInputs.cache
+C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\Keeper.Data\obj\Debug\netcoreapp3.1\Keeper.Data.AssemblyInfo.cs
+C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\Keeper.Data\bin\Debug\netcoreapp3.1\Keeper.Data.pdb
+C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\Keeper.Data\bin\Debug\netcoreapp3.1\Keeper.Models.dll
+C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\Keeper.Data\bin\Debug\netcoreapp3.1\Keeper.Models.pdb
+C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\Keeper.Data\obj\Debug\netcoreapp3.1\Keeper.Data.csproj.CopyComplete
+C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\Keeper.Data\obj\Debug\netcoreapp3.1\Keeper.Data.dll
+C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\Keeper.Data\obj\Debug\netcoreapp3.1\Keeper.Data.pdb
+C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\Keeper.Data\obj\Debug\netcoreapp3.1\Keeper.Data.csproj.CoreCompileInputs.cache
+C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\Keeper.Data\bin\Debug\netcoreapp3.1\Keeper.Helper.dll
+C:\Users\kwalters\Documents\Personal\React\contact-keeper\Api\Keeper.Data\bin\Debug\netcoreapp3.1\Keeper.Helper.pdb

@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Keeper.Data\Keeper.Data.csproj" />
     <ProjectReference Include="..\Keeper.Models\Keeper.Models.csproj" />
   </ItemGroup>
 

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "PwGyN+13zEt2LmdvqKJdRUpMzR/K7G+1OHo7ykuuQVdMflGM9hbCAW3HcbYujGKC0/mTN5zSpCNhLcVEjsMC2w==",
+  "dgSpecHash": "lh8vWLZQpg0flznB9YZZs65iMxAH+xPWEzJPJsYfX++x7pss5iV4d2D5Fe8sGt9DyEjLymPQqrCDQec5EfSPag==",
   "success": true,
   "projectFilePath": "C:\\Users\\kwalters\\Documents\\Personal\\React\\contact-keeper\\Api\\Keeper.Models\\Keeper.Models.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\kwalters\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

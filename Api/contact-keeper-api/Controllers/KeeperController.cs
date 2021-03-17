@@ -337,6 +337,47 @@ namespace contact_keeper_api.Controllers
                     });
             }
         }
+
+        [JWT.Authorize]
+        [HttpDelete("contacts/{id}")]
+        [Route("contacts")]
+        public IActionResult DeleteContact([FromRoute] string id)
+        {
+            try
+            {
+                var tsql = new Query();
+                var tokenHandler = new TokenHandler();
+
+                #region validation
+                try { Guid.Parse(id); }
+                catch
+                {
+                    throw new NullReferenceException("Invalid contact id");
+                }
+                var guid = Guid.Parse(id);
+                #endregion validation
+
+                var result = tsql.DeleteContact(guid);
+                return Ok(new { Message = result ? "Successfully removed contact from storage" : "Failed to update contact details", Succses = result, });
+            }
+            catch (NullReferenceException ex)
+            {
+                return BadRequest(new Error
+                {
+                    Message = ex.Message,
+                    Status = false
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    new Error
+                    {
+                        Message = ex.Message,
+                        Status = false
+                    });
+            }
+        }
         #endregion
     }
 }

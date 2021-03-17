@@ -167,5 +167,18 @@ namespace Keeper.Data.Data
             }
             return contact;
         }
+
+        public bool DeleteContact(Guid id)
+        {
+            List<DbParameter> parameterList = new List<DbParameter>();
+            parameterList.Add(new SqlParameter("@Id", SqlDbType.UniqueIdentifier) { Value = id});
+
+            var resp = base.ExecuteNonQuery("sp_DeleteContact", parameterList);
+
+            if (resp > 0)
+                return true;
+
+            return false;
+        }
     }
 }

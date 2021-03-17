@@ -118,7 +118,7 @@ BEGIN
        
 END
 
-CREATE PROCEDURE [dbo].[sp_UpdateContact]
+ALTER PROCEDURE [dbo].[sp_UpdateContact]
 @Name nvarchar(256),
 @Email nvarchar(256) = null,
 @Phone nvarchar(256) = null,
@@ -132,7 +132,8 @@ BEGIN
 	[Email] = @Email,
 	[Phone] = @Phone,
 	[ContactType] = @ContactType,
-	[Owner] = @Owner
+	[Owner] = @Owner,
+	[LastModified] = GETDATE()
 	WHERE Id = @Id
 	
 	SELECT TOP(1) C.Id,
@@ -140,10 +141,22 @@ BEGIN
        C.Email,
        C.Phone,
        C.ContactType,
-       C.Created,
+       C.LastModified,
        C.[Owner]
 	   FROM dbo.Contacts C
 	   WHERE [C].[Id] = @Id
 	   ORDER BY C.Created DESC
        
+END
+
+ALTER TABLE dbo.Contacts ADD LastModified DATETIME NULL
+ALTER TABLE dbo.Contacts ADD IsDeleted bit NOT NULL DEFAULT 0
+
+CREATE PROCEDURE [dbo].[sp_DeleteContact]
+@Id UNIQUEIDENTIFIER
+AS 
+BEGIN
+	UPDATE dbo.Contacts	SET 
+	[ISDeleted] = 1
+	WHERE Id = @Id
 END

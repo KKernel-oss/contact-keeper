@@ -1,0 +1,253 @@
+{
+	"info": {
+		"_postman_id": "729914ce-fcd6-4518-affe-da037434a4f7",
+		"name": "ContactKeeper",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users & Auth",
+			"item": [
+				{
+					"name": "https://localhost:44331/api/users",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"name\": \"Alicia Brown\",\r\n      \"email\": \"AliciaBrown@gmail.com\",\r\n      \"password\": \"aliciabrown\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44331/api/users",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44331",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authenication",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"aliciabrown@gmail.com\",\r\n    \"password\":\"aliciabrown\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44331/api/auth",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44331",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjMiLCJuYmYiOjE2MTUzNDk2NjYsImV4cCI6MTYxNTM1MzI2NiwiaWF0IjoxNjE1MzQ5NjY2fQ.qIRw6_uSQ_5T_C5SewYFWWg4gwfKgcyS0pUtvWWC73Y",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:44331/api/users",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44331",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve logged in user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjMiLCJuYmYiOjE2MTU5NDYzNDEsImV4cCI6MTYxNTk0OTk0MSwiaWF0IjoxNjE1OTQ2MzQxfQ.IaKSEpiGnO2trLG4eF0uD-T2-rPG1MYNhWX_suPyz7Q",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:44331/api/auth",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44331",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contacts",
+			"item": [
+				{
+					"name": "Get Contacts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjMiLCJuYmYiOjE2MTUzNTM0NjYsImV4cCI6MTYxNTM1NzA2NiwiaWF0IjoxNjE1MzUzNDY2fQ.kl5NWV6FSlwaJ9dWbvsSRa8bsv4qwOHTPiRRdiiYIAk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:44331/api/contacts",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44331",
+							"path": [
+								"api",
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new Contact",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjMiLCJuYmYiOjE2MTUzNTM0NjYsImV4cCI6MTYxNTM1NzA2NiwiaWF0IjoxNjE1MzUzNDY2fQ.kl5NWV6FSlwaJ9dWbvsSRa8bsv4qwOHTPiRRdiiYIAk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Marcia Slue\",\r\n      \"email\": \"\",\r\n      \"phone\": \"\",\r\n      \"contactType\": \"Personal\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44331/api/contacts",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44331",
+							"path": [
+								"api",
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update contact",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjMiLCJuYmYiOjE2MTU5NDYzNDEsImV4cCI6MTYxNTk0OTk0MSwiaWF0IjoxNjE1OTQ2MzQxfQ.IaKSEpiGnO2trLG4eF0uD-T2-rPG1MYNhWX_suPyz7Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"44E6B462-8803-4C60-8BC8-AEA8819E7729\",\r\n    \"name\": \"Marcia Sluee\",\r\n      \"email\": \"\",\r\n      \"phone\": \"\",\r\n      \"contactType\": \"Personal\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44331/api/contacts/update",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44331",
+							"path": [
+								"api",
+								"contacts",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Contact",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjMiLCJuYmYiOjE2MTU5NDYzNDEsImV4cCI6MTYxNTk0OTk0MSwiaWF0IjoxNjE1OTQ2MzQxfQ.IaKSEpiGnO2trLG4eF0uD-T2-rPG1MYNhWX_suPyz7Q",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:44331/api/contacts/44E6B462-8803-4C60-8BC8-AEA8819E7729",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44331",
+							"path": [
+								"api",
+								"contacts",
+								"44E6B462-8803-4C60-8BC8-AEA8819E7729"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

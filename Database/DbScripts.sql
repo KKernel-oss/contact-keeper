@@ -81,7 +81,7 @@ SELECT C.Id,
 	   ORDER BY C.Created DESC
 END
 
-CREATE PROCEDURE sp_InsertNewContact
+ALTER PROCEDURE sp_InsertNewContact
 @Name nvarchar(256),
 @Email nvarchar(256) = null,
 @Phone nvarchar(256) = null,
@@ -89,5 +89,61 @@ CREATE PROCEDURE sp_InsertNewContact
 @Owner int
 AS 
 BEGIN
+	INSERT INTO dbo.Contacts
+	(
+	    [Name],
+	    Email,
+	    Phone,
+	    ContactType,
+	    [Owner]
+	)
+	VALUES
+	(   @Name,       -- Name - nvarchar(256)
+	    @Email,       -- Email - nvarchar(256)
+	    @Phone,       -- Phone - nvarchar(256)
+	    @ContactType,       -- ContactType - nvarchar(50)
+	    @Owner          -- Owner - int
+	    )
+	SELECT TOP(1) C.Id,
+       C.[Name],
+       C.Email,
+       C.Phone,
+       C.ContactType,
+       C.Created,
+       C.[Owner]
+	   FROM dbo.Contacts C
+	   WHERE [Owner] = @Owner
+	   ORDER BY C.Created DESC
 
+       
+END
+
+CREATE PROCEDURE [dbo].[sp_UpdateContact]
+@Name nvarchar(256),
+@Email nvarchar(256) = null,
+@Phone nvarchar(256) = null,
+@ContactType nvarchar(256) = null,
+@Owner INT,
+@Id UNIQUEIDENTIFIER
+AS 
+BEGIN
+	UPDATE dbo.Contacts	SET 
+	[Name] = @Name,
+	[Email] = @Email,
+	[Phone] = @Phone,
+	[ContactType] = @ContactType,
+	[Owner] = @Owner
+	WHERE Id = @Id
+	
+	SELECT TOP(1) C.Id,
+       C.[Name],
+       C.Email,
+       C.Phone,
+       C.ContactType,
+       C.Created,
+       C.[Owner]
+	   FROM dbo.Contacts C
+	   WHERE [C].[Id] = @Id
+	   ORDER BY C.Created DESC
+       
 END

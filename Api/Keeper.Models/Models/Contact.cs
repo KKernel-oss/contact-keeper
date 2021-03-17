@@ -12,6 +12,7 @@ namespace Keeper.Models.Models
         public string Phone { get; set; }
         public ContactType ContactType { get; set; }
         public DateTime Created { get; set; }
+        public DateTime LastModified { get; set; }
         public int Owner { get; set; }
         public string OwnerName { get; set; }
         public string OwnerEmail { get; set; }

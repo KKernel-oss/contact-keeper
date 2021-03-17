@@ -246,7 +246,8 @@ namespace contact_keeper_api.Controllers
                 if (string.IsNullOrWhiteSpace(model.Name))
                     throw new NullReferenceException("Name is required");
 
-                if (!string.IsNullOrWhiteSpace(model.Email)) {
+                if (!string.IsNullOrWhiteSpace(model.Email))
+                {
                     if (!Regex.IsMatch(model.Email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
                         throw new NullReferenceException("A valid email is required");
                 }
@@ -260,6 +261,62 @@ namespace contact_keeper_api.Controllers
                 #endregion validation
 
                 var result = tsql.InsertNewContact(model);
+                return Ok(result);
+            }
+            catch (NullReferenceException ex)
+            {
+                return BadRequest(new Error
+                {
+                    Message = ex.Message,
+                    Status = false
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    new Error
+                    {
+                        Message = ex.Message,
+                        Status = false
+                    });
+            }
+        }
+
+        [JWT.Authorize]
+        [HttpPost]
+        [Route("contacts/update")]
+        public IActionResult UpdateContact([FromBody] Contact model)
+        {
+            try
+            {
+                var tsql = new Query();
+                var tokenHandler = new TokenHandler();
+
+                #region validation
+                try { Guid.Parse(model.Id.ToString()); }
+                catch
+                {
+                    throw new NullReferenceException("Invalid contact id");
+                }
+
+                if (string.IsNullOrWhiteSpace(model.Name))
+                    throw new NullReferenceException("Name is required");
+
+                if (!string.IsNullOrWhiteSpace(model.Email))
+                {
+                    if (!Regex.IsMatch(model.Email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
+                        throw new NullReferenceException("A valid email is required");
+                }
+
+                var jwt = new JwtMiddleware();
+                var token = Request.Headers["x-auth-token"].FirstOrDefault()?.Split(" ").Last();
+
+                var user = jwt.GetClaimValue(token);
+                model.Owner = user;
+
+                #endregion validation
+
+                var result = tsql.UpdateContact(model);
                 return Ok(result);
             }
             catch (NullReferenceException ex)

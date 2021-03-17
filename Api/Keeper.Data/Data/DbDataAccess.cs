@@ -133,5 +133,39 @@ namespace Keeper.Data.Data
             }
             return contact;
         }
+
+        public Contact UpdateContact(Contact model)
+        {
+            Contact contact = new Contact();
+
+            List<DbParameter> parameterList = new List<DbParameter>();
+            parameterList.Add(new SqlParameter("@Name", SqlDbType.NVarChar) { Value = model.Name });
+            parameterList.Add(new SqlParameter("@Email", SqlDbType.NVarChar) { Value = model.Email });
+            parameterList.Add(new SqlParameter("@Phone", SqlDbType.NVarChar) { Value = model.Phone });
+            parameterList.Add(new SqlParameter("@ContactType", SqlDbType.NVarChar) { Value = model.ContactType.ToString() });
+            parameterList.Add(new SqlParameter("@Owner", SqlDbType.Int) { Value = model.Owner });
+            parameterList.Add(new SqlParameter("@Id", SqlDbType.UniqueIdentifier) { Value = model.Id });
+
+            using (DbDataReader dataReader = base.GetDataReader("sp_UpdateContact", parameterList))
+            {
+                if (dataReader != null && dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        contact = new Contact
+                        {
+                            Id = dataReader.GetGuid(dataReader.GetOrdinal("Id")),
+                            Name = dataReader.GetString(dataReader.GetOrdinal("Name")),
+                            Email = dataReader.GetString(dataReader.GetOrdinal("Email")),
+                            Phone = dataReader.GetString(dataReader.GetOrdinal("Phone")),
+                            ContactType = (ContactType)Enum.Parse(typeof(ContactType), dataReader.GetString(dataReader.GetOrdinal("ContactType"))),
+                            Owner = dataReader.GetInt32(dataReader.GetOrdinal("Owner")),
+                            LastModified = dataReader.IsDBNull(dataReader.GetOrdinal("LastModified")) ? new DateTime() : dataReader.GetDateTime(dataReader.GetOrdinal("LastModified")),
+                        };
+                    }
+                }
+            }
+            return contact;
+        }
     }
 }

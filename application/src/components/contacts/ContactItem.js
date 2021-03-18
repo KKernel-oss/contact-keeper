@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import ContactContext from '../../context/contact/contactContext';
 
 const ContactItem = ({ contact }) => {
   const { id, name, email, phone, contactType } = contact;
+  const contactContext = useContext(ContactContext);
+  const { deleteContact, setCurrent, clearCurrent } = contactContext;
+  const removeContact = (e) => {
+    deleteContact(id);
+    clearCurrent();
+  };
+  const setCurrentContact = () => {
+    setCurrent(contact);
+  };
   return (
     <div className='card bg-light'>
       <h3 className='text-primary text-left'>
@@ -20,18 +30,22 @@ const ContactItem = ({ contact }) => {
       <ul className='list'>
         {email && (
           <li>
-            <i class='far fa-envelope'></i> {email}
+            <i className='far fa-envelope'></i> {email}
           </li>
         )}
         {phone && (
           <li>
-            <i class='fas fa-mobile-alt'></i> {email}
+            <i className='fas fa-mobile-alt'></i> {phone}
           </li>
         )}
       </ul>
       <p>
-        <button className='btn btn-dark btn-sm'>Edit</button>
-        <button className='btn btn-danger btn-sm'>Remove</button>
+        <button className='btn btn-dark btn-sm' onClick={setCurrentContact}>
+          Edit
+        </button>
+        <button className='btn btn-danger btn-sm' onClick={removeContact}>
+          Remove
+        </button>
       </p>
     </div>
   );
